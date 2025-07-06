@@ -1,0 +1,72 @@
+﻿@page "/"
+@using Modelos.DTO
+@using Repositorio.IRespositorio
+@inject IPropiedadRepositorio PropiedadRepositorio
+
+<PageTitle>Hoteles</PageTitle>
+
+<h2 style="text-align: center; font-size: 2.2rem; margin-top: 30px; color: #003580; font-weight: 700; letter-spacing: -0.5px;">
+    Encuentra tu hotel ideal
+</h2>
+
+@if (!propiedadesDTO.Any())
+{
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; text-align: center; color: #555;">
+        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No Hotels" style="width: 120px; margin-bottom: 20px; opacity: 0.7;" />
+        <h2 style="font-size: 1.8rem; margin-bottom: 10px;">No hay hoteles disponibles</h2>
+        <p style="font-size: 1rem; color: #777; max-width: 400px;">
+            Actualmente no hay hoteles cargados en la plataforma. Intenta nuevamente más tarde o vuelve a la página principal.
+        </p>
+    </div>
+}
+else
+{
+    <div class="hotel-list" style="display: flex; flex-direction: column; gap: 30px; max-width: 1000px; margin: 40px auto;">
+        @foreach (var hotel in propiedadesDTO)
+        {
+            <div class="hotel-card" style="display: flex; flex-direction: row; border: 1px solid #e6e6e6; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #fff; transition: transform 0.2s;">
+                <div style="flex-shrink: 0; width: 280px; height: 200px; overflow: hidden;">
+                    <img src="@(hotel.ImagenPropiedad?.FirstOrDefault()?.UrlImagen ?? "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg")"
+                         alt="Hotel Image"
+                         style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                </div>
+                <div style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.4rem; font-weight: 600; color: #003580;">@hotel.Name</h3>
+                        <p style="color: #888; font-size: 0.95rem; margin-top: 4px;">📍 @hotel.Place</p>
+                        <p style="color: #444; font-size: 0.95rem; margin-top: 8px;">@hotel.Descripcion</p>
+                        <div style="margin-top: 10px; font-size: 0.9rem; color: #555;">
+                            <span style="margin-right: 15px;">🛏️ @hotel.Habitaciones habs</span>
+                            <span style="margin-right: 15px;">🛁 @hotel.Banios baños</span>
+                            <span>📐 @hotel.Area m²</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="font-size: 1.2rem; font-weight: bold; color: #d9534f;">@hotel.Price.ToString("C")</span>
+                            <span style="font-size: 0.85rem; color: #777;"> / noche</span>
+                        </div>
+                        <NavLink href="@($"detalle-propiedad/{hotel.Id}")"
+                                 style="padding: 8px 16px; background-color: #0071c2; color: white; border-radius: 5px; text-decoration: none; font-size: 0.95rem;">
+                            Ver detalles
+                        </NavLink>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+
+@code {
+    //Obtenemos las propiedades
+    private IEnumerable<PropiedadDTO> propiedadesDTO { get; set; } = new List<PropiedadDTO>();
+
+    //El metodo que inicializa el proyecto
+    protected override async Task OnInitializedAsync()
+    {
+        propiedadesDTO = await PropiedadRepositorio.GetAllPropiedads();
+    }
+
+}

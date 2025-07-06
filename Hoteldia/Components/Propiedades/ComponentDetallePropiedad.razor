@@ -1,0 +1,260 @@
+﻿@page "/detalle-propiedad/{Id:int}"
+@using Modelos.DTO
+@using Repositorio.IRespositorio
+@inject IPropiedadRepositorio PropiedadRepositorio
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components
+@implements IDisposable
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<style>
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+    }
+
+    h1.title {
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: #003580;
+        margin-bottom: 5px;
+        letter-spacing: -1px;
+    }
+
+    p.location {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .swiper-container {
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        height: 460px;
+        margin-bottom: 40px;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: 460px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        border-radius: 14px;
+    }
+
+        .swiper-slide img:hover {
+            transform: scale(1.05);
+        }
+
+    .description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 40px;
+        color: #444;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+        margin-bottom: 45px;
+    }
+
+    .detail-item {
+        background: #f9f9f9;
+        padding: 18px 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        font-weight: 600;
+        color: #222;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.05rem;
+        transition: background-color 0.3s ease;
+    }
+
+        .detail-item strong {
+            color: #003580;
+            min-width: 130px;
+            font-weight: 700;
+        }
+
+        .detail-item span.status {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            user-select: none;
+        }
+
+    .status-active {
+        background-color: #28a745;
+    }
+
+    .status-inactive {
+        background-color: #dc3545;
+    }
+
+    .price {
+        color: #d9534f;
+        font-weight: 900;
+        font-size: 1.3rem;
+    }
+
+    .btn-back {
+        display: inline-block;
+        background-color: #0071c2;
+        color: white;
+        font-weight: 700;
+        padding: 14px 30px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        box-shadow: 0 6px 15px rgba(0, 113, 194, 0.45);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .btn-back:hover {
+            background-color: #005b9a;
+            box-shadow: 0 8px 22px rgba(0, 91, 154, 0.7);
+        }
+
+
+    .detail-item {
+        background: #f9f9f9;
+        padding: 18px 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        font-weight: 600;
+        color: #222;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.05rem;
+        transition: background-color 0.3s ease;
+        flex-wrap: wrap;
+    }
+
+        .detail-item strong {
+            color: #003580;
+            min-width: 150px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* Aquí quitamos el white-space: nowrap y max-width para que no corte el precio */
+        .detail-item span {
+            white-space: normal;
+            overflow-wrap: break-word; /* permite partir palabras largas */
+            display: inline-block;
+        }
+
+            /* Para el status seguimos con nowrap porque es corto */
+            .detail-item span.status {
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-weight: 700;
+                color: white;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                user-select: none;
+                white-space: nowrap;
+            }
+</style>
+
+@if (propiedadDTO != null)
+{
+    <div class="container">
+        <h1 class="title">@propiedadDTO.Name</h1>
+        <p class="location">📍 @propiedadDTO.Place</p>
+
+        <div class="swiper-container swiper mySwiper">
+            <div class="swiper-wrapper">
+                @if (propiedadDTO.UrlImagenes?.Any() == true)
+                {
+                    foreach (var imgUrl in propiedadDTO.UrlImagenes)
+                    {
+                        <div class="swiper-slide">
+                            <img src="@imgUrl" alt="Imagen del hotel" />
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="swiper-slide">
+                        <img src="https://via.placeholder.com/1100x460?text=Sin+Imagen+Disponible" alt="Sin imagen" />
+                    </div>
+                }
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <p class="description">@propiedadDTO.Descripcion</p>
+
+    <div class="details-grid">
+        <div class="detail-item"><strong>🛏️ Habitaciones:</strong> <span>@propiedadDTO.Habitaciones</span></div>
+        <div class="detail-item"><strong>🛁 Baños:</strong> <span>@propiedadDTO.Banios</span></div>
+        <div class="detail-item"><strong>📐 Área:</strong> <span>@propiedadDTO.Area m²</span></div>
+        <div class="detail-item"><strong>💰 Precio por noche:</strong> <span class="price">@propiedadDTO.Price.ToString("C")</span></div>
+        <div class="detail-item"><strong>📍 Coordenadas:</strong> <span>Lat: @propiedadDTO.Latitude, Lng: @propiedadDTO.Longitude</span></div>
+        <div class="detail-item">
+            <strong>📅 Última actualización:</strong>
+            <span>
+                @(propiedadDTO.FechaActualizacion > DateTime.MinValue
+                                ? propiedadDTO.FechaActualizacion.ToString("dd MMM yyyy")
+                                : "Sin fecha disponible")
+            </span>
+        </div>            <div class="detail-item"><strong>🏷️ Categoría:</strong> <span>@propiedadDTO.Categoria?.NombreCategoria</span></div>
+        <div class="detail-item">
+            <strong>Estado:</strong>
+            <span class="status @(propiedadDTO.Activo ? "status-active" : "status-inactive")">
+                @(propiedadDTO.Activo ? "Activo" : "Inactivo")
+                @(propiedadDTO.Activo ? "Activo" : "Inactivo")
+            </span>
+        </div>
+    </div>
+
+        <NavLink href="/" class="btn-back">← Volver al listado</NavLink>
+    </div>
+}
+else
+{
+    <p style="text-align: center; margin-top: 150px; font-size: 1.3rem; color: #aaa;">Cargando detalles del hotel...</p>
+}
+
+@code {
+    private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        propiedadDTO = await PropiedadRepositorio.GetPropiedad(Id.Value);
+        propiedadDTO.UrlImagenes = propiedadDTO.ImagenPropiedad?.Select(img => img.UrlImagen).ToList() ?? new List<string>();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && propiedadDTO.UrlImagenes?.Any() == true)
+        {
+            await JSRuntime.InvokeVoidAsync("initializeSwiper");
+        }
+    }
+
+    [Inject]
+    private IJSRuntime JSRuntime { get; set; }
+
+    public void Dispose() { }
+}
