@@ -1,4 +1,5 @@
 ﻿@page "/editar-propiedad/{Id:int}"
+@using Microsoft.AspNetCore.Authorization
 @using Modelos.DTO
 @using Repositorio.IRespositorio
 @inject IPropiedadRepositorio PropiedadRepositorio
@@ -6,6 +7,7 @@
 @inject ICategoriaRepositorio CategoriaRepositorio
 @inject ISubida SubidaArchivo
 @inject IImagenPropiedadRepositori ImagenPropiedadRepositorio
+@attribute [Authorize]
 
 <h1 class="text-center">Crear Propiedad</h1>
 

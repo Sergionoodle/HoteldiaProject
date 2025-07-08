@@ -85,19 +85,33 @@ using Hoteldia.Servicios
 #nullable disable
     ;
 #nullable restore
-#line (2,2)-(2,19) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+#line (2,2)-(2,42) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+using Microsoft.AspNetCore.Authorization
+
+#nullable disable
+    ;
+#nullable restore
+#line (3,2)-(3,19) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
 using Modelos.DTO
 
 #nullable disable
     ;
 #nullable restore
-#line (3,2)-(3,33) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+#line (4,2)-(4,33) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
 using Repositorio.IRespositorio
 
 #nullable disable
     ;
     #line default
     #line hidden
+#nullable restore
+#line (7,12)-(7,23) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+[Authorize]
+
+#line default
+#line hidden
+#nullable disable
+
     [global::Microsoft.AspNetCore.Components.RouteAttribute(
     // language=Route,Component
 #nullable restore
@@ -118,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (79,8)-(105,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+#line (83,8)-(109,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
 
     private IEnumerable<CategoriaDTO> categoriaDTO { get; set; } = new List<CategoriaDTO>();
     private int? BorrarId { get; set; }
@@ -152,7 +166,7 @@ using Repositorio.IRespositorio
 
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (4,9)-(4,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+#line (5,9)-(5,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
 ICategoriaRepositorio
 
 #line default
@@ -160,7 +174,7 @@ ICategoriaRepositorio
 #nullable disable
          
 #nullable restore
-#line (4,31)-(4,51) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+#line (5,31)-(5,51) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
 CategoriaRepositorio
 
 #line default

@@ -1,9 +1,13 @@
 ﻿@page "/category"
+@using Microsoft.AspNetCore.Authorization
 @using Modelos.DTO
 @using Repositorio.IRespositorio
 @inject ICategoriaRepositorio CategoriaRepositorio
 
+@attribute [Authorize]
+
 <h1 class="text-center">Categorias</h1>
+ <!--attribute [Authorize]Ahora solo los usuarios logeados podran entrar-->
 
 <div class="card">
     <div class="card-header">

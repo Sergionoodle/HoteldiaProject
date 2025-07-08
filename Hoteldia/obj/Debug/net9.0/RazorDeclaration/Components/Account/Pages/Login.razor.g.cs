@@ -144,7 +144,7 @@ using Hoteldia.Data
         }
         #pragma warning restore 1998
 #nullable restore
-#line (67,8)-(128,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Account\Pages\Login.razor"
+#line (64,8)-(125,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Account\Pages\Login.razor"
 
     private string? errorMessage;
 
@@ -161,19 +161,17 @@ using Hoteldia.Data
     {
         if (HttpMethods.IsGet(HttpContext.Request.Method))
         {
-            // Clear the existing external cookie to ensure a clean login process
+            // Limpiar cookie de login externo para asegurar un inicio de sesión limpio
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
         }
     }
 
     public async Task LoginUser()
     {
-        // This doesn't count login failures towards account lockout
-        // To enable password failures to trigger account lockout, set lockoutOnFailure: true
         var result = await SignInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
         if (result.Succeeded)
         {
-            Logger.LogInformation("User logged in.");
+            Logger.LogInformation("El usuario inició sesión correctamente.");
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.RequiresTwoFactor)
@@ -184,26 +182,28 @@ using Hoteldia.Data
         }
         else if (result.IsLockedOut)
         {
-            Logger.LogWarning("User account locked out.");
+            Logger.LogWarning("La cuenta del usuario está bloqueada.");
             RedirectManager.RedirectTo("Account/Lockout");
         }
         else
         {
-            errorMessage = "Error: Invalid login attempt.";
+            errorMessage = "Error: El intento de inicio de sesión no es válido.";
         }
     }
 
     private sealed class InputModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "El correo electrónico es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El correo electrónico no tiene un formato válido.")]
+        [Display(Name = "Correo electrónico")]
         public string Email { get; set; } = "";
 
-        [Required]
+        [Required(ErrorMessage = "La contraseña es obligatoria.")]
         [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; } = "";
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "¿Recordarme?")]
         public bool RememberMe { get; set; }
     }
 
