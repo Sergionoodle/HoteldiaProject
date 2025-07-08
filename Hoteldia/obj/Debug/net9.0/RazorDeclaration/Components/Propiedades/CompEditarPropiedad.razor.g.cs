@@ -85,19 +85,33 @@ using Hoteldia.Servicios
 #nullable disable
     ;
 #nullable restore
-#line (2,2)-(2,19) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (2,2)-(2,42) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+using Microsoft.AspNetCore.Authorization
+
+#nullable disable
+    ;
+#nullable restore
+#line (3,2)-(3,19) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 using Modelos.DTO
 
 #nullable disable
     ;
 #nullable restore
-#line (3,2)-(3,33) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (4,2)-(4,33) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 using Repositorio.IRespositorio
 
 #nullable disable
     ;
     #line default
     #line hidden
+#nullable restore
+#line (10,12)-(10,23) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+[Authorize]
+
+#line default
+#line hidden
+#nullable disable
+
     [global::Microsoft.AspNetCore.Components.RouteAttribute(
     // language=Route,Component
 #nullable restore
@@ -118,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (188,8)-(336,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (190,8)-(338,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();
@@ -274,7 +288,7 @@ using Repositorio.IRespositorio
 
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (8,9)-(8,35) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (9,9)-(9,35) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 IImagenPropiedadRepositori
 
 #line default
@@ -282,7 +296,7 @@ IImagenPropiedadRepositori
 #nullable disable
          
 #nullable restore
-#line (8,36)-(8,62) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (9,36)-(9,62) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 ImagenPropiedadRepositorio
 
 #line default
@@ -292,7 +306,7 @@ ImagenPropiedadRepositorio
          = default!;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (7,9)-(7,16) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (8,9)-(8,16) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 ISubida
 
 #line default
@@ -300,7 +314,7 @@ ISubida
 #nullable disable
          
 #nullable restore
-#line (7,17)-(7,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (8,17)-(8,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 SubidaArchivo
 
 #line default
@@ -310,7 +324,7 @@ SubidaArchivo
          = default!;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (6,9)-(6,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (7,9)-(7,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 ICategoriaRepositorio
 
 #line default
@@ -318,7 +332,7 @@ ICategoriaRepositorio
 #nullable disable
          
 #nullable restore
-#line (6,31)-(6,51) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (7,31)-(7,51) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 CategoriaRepositorio
 
 #line default
@@ -328,7 +342,7 @@ CategoriaRepositorio
          = default!;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (5,9)-(5,26) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (6,9)-(6,26) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 NavigationManager
 
 #line default
@@ -336,7 +350,7 @@ NavigationManager
 #nullable disable
          
 #nullable restore
-#line (5,27)-(5,44) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (6,27)-(6,44) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 navigationManager
 
 #line default
@@ -346,7 +360,7 @@ navigationManager
          = default!;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (4,9)-(4,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (5,9)-(5,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 IPropiedadRepositorio
 
 #line default
@@ -354,7 +368,7 @@ IPropiedadRepositorio
 #nullable disable
          
 #nullable restore
-#line (4,31)-(4,51) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (5,31)-(5,51) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 PropiedadRepositorio
 
 #line default

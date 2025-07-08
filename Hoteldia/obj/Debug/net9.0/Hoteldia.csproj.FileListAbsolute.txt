@@ -328,5 +328,4 @@ C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Razor\C
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\compressed\a51rh91aax-4vffjlgs4y.gz
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\compressed\okif62hcka-tyhwhqb81j.gz
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\compressed\kv2ynhhvno-tyhwhqb81j.gz
-C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\RazorDeclaration\Components\Account\Pages\LogOut.razor.g.cs
-C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Razor\Components\Account\Pages\LogOut.razor.g.cs
+C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Hoteldia.sourcelink.json

@@ -1,8 +1,10 @@
 ﻿@page "/editar-categoria/{Id:int}"
+@using Microsoft.AspNetCore.Authorization
 @using Modelos.DTO
 @using Repositorio.IRespositorio
 @inject ICategoriaRepositorio CategoriaRepositorio
 @inject NavigationManager navigationManager
+@attribute [Authorize]
 
 <h1 class="text-center">Editar Categoria</h1>
 
