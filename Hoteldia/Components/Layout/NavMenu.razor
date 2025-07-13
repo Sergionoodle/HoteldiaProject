@@ -20,18 +20,24 @@
             </NavLink>
         </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="category">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Category
-            </NavLink>
-        </div>
+        <!-- Vamos a capar los botones en el html usando AuthorizeView seguido del Authori
+            zed, podemos añadirle un rol de admin para que solo entren los selectos 
+        -->
+        <AuthorizeView Roles="Administrador, Editor, Operaciones">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="category">
+                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Category
+                    </NavLink>
+                </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="propiedades">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Properties
-            </NavLink>
-        </div>
-
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="propiedades">
+                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Properties
+                    </NavLink>
+                </div>
+            </Authorized>
+        </AuthorizeView>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="auth">
                 <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required

@@ -1,0 +1,83 @@
+﻿@page "/configurar-roles"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject RoleManager<IdentityRole> roleManager
+@inject UserManager<IdentityUser> userManager
+@inject IConfiguration config
+
+@attribute [Authorize(Roles = "Administrador")]
+
+<!-- Página de configuración de roles -->
+
+<section class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow rounded-4">
+                <div class="card-body text-center">
+                    <h2 class="mb-3 text-primary">Configuración de Roles</h2>
+                    <p class="text-muted">
+                        Esta herramienta permite crear roles y asignarlos a un usuario administrador configurado en <code>appsettings.json</code>.
+                    </p>
+                    <p class="text-success">
+                        Roles configurados correctamente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    //Así protegemos los componentes
+    // es decir si añadimos esto solo lo podra usar el rol asignado
+    // @attribute [Authorize(Roles = "Administrador, Publicador...")]
+
+
+    /// Al navegar a la página, se ejecuta la configuración de roles.
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await ConfigAutorization();
+    }
+
+
+    /// <summary>
+    /// Crea el rol definido si no existe y lo asigna al usuario administrador configurado.
+    /// </summary>
+    private async Task ConfigAutorization()
+    {
+        // Cambiar este valor para crear y asignar diferentes roles.
+        const string roleUser = "Administrador";
+        // Ejemplos alternativos:
+        // const string roleUser = "Editor";
+        // const string roleUser = "Operaciones";
+
+        string[] roles = { roleUser };
+
+        foreach (var role in roles)
+        {
+            var existeRol = await roleManager.RoleExistsAsync(role);
+
+            if (!existeRol)
+            {
+                await roleManager.CreateAsync(new IdentityRole(role));
+            }
+        }
+
+        // Obtener el correo del usuario desde appsettings.json
+        var user = await userManager.FindByEmailAsync(
+            config.GetValue<string>("UsuarioAdministrador"));
+        // Alternativas:
+        //var user = await userManager.FindByEmailAsync(
+        //config.GetValue<string>("UsuarioEditor"));
+
+        //var user = await userManager.FindByEmailAsync(
+        //config.GetValue<string>("UsuarioOperador"));
+
+        if (user != null)
+        {
+            await userManager.AddToRoleAsync(user, roleUser);
+        }
+    }
+}

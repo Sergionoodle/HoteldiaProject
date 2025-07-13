@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Hoteldia.Components.Layout
+namespace Hoteldia.Components.Pages.Autorizacion
 {
     #line default
     using global::System;
@@ -84,18 +84,26 @@ using Hoteldia.Servicios
 
 #nullable disable
     ;
+#nullable restore
+#line (2,2)-(2,37) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
+using Microsoft.AspNetCore.Identity
+
+#nullable disable
+    ;
     #line default
     #line hidden
-    #nullable restore
-    public partial class NavMenu : global::Microsoft.AspNetCore.Components.ComponentBase, 
+    [global::Microsoft.AspNetCore.Components.RouteAttribute(
+    // language=Route,Component
 #nullable restore
-#line (1,13)-(1,24) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Layout\NavMenu.razor"
-IDisposable
+#line (1,7)-(1,26) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
+"/configurar-roles"
 
 #line default
 #line hidden
 #nullable disable
-
+    )]
+    #nullable restore
+    public partial class CompRoles : global::Microsoft.AspNetCore.Components.ComponentBase
     #nullable disable
     {
         #pragma warning disable 1998
@@ -104,25 +112,32 @@ IDisposable
         }
         #pragma warning restore 1998
 #nullable restore
-#line (80,8)-(99,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Layout\NavMenu.razor"
+#line (9,8)-(35,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
 
-    private string? currentUrl;
+    //En el appsettings.json, agregamos un UsuarioAdmin
 
-    protected override void OnInitialized()
+    protected override async Task OnParametersSetAsync()
     {
-        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-        NavigationManager.LocationChanged += OnLocationChanged;
+        await ConfigAutorization();
     }
 
-    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    private async Task ConfigAutorization()
     {
-        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
-        StateHasChanged();
-    }
+        const string adminRole = "Administrador";
+        string[] roles = { adminRole };
 
-    public void Dispose()
-    {
-        NavigationManager.LocationChanged -= OnLocationChanged;
+        foreach (var role in roles)
+        {
+            var existeRol = await roleManager.RoleExistsAsync(role);
+
+            if (existeRol == false)
+            {
+                await roleManager.CreateAsync(new IdentityRole(role));
+            }
+        }
+
+        var user = await userManager.AccessFailedAsync(
+            config.GetValue<string>("UsuarioAdministrador"));
     }
 
 #line default
@@ -131,16 +146,52 @@ IDisposable
 
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (3,9)-(3,26) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Layout\NavMenu.razor"
-NavigationManager
+#line (5,9)-(5,23) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
+IConfiguration
 
 #line default
 #line hidden
 #nullable disable
          
 #nullable restore
-#line (3,27)-(3,44) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Layout\NavMenu.razor"
-NavigationManager
+#line (5,24)-(5,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
+config
+
+#line default
+#line hidden
+#nullable disable
+         { get; set; }
+         = default!;
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
+#nullable restore
+#line (4,9)-(4,34) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
+UserManager<IdentityUser>
+
+#line default
+#line hidden
+#nullable disable
+         
+#nullable restore
+#line (4,35)-(4,46) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
+userManager
+
+#line default
+#line hidden
+#nullable disable
+         { get; set; }
+         = default!;
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
+#nullable restore
+#line (3,9)-(3,34) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
+RoleManager<IdentityRole>
+
+#line default
+#line hidden
+#nullable disable
+         
+#nullable restore
+#line (3,35)-(3,46) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Autorizacion\CompRoles.razor"
+roleManager
 
 #line default
 #line hidden

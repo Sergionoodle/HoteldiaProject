@@ -9,7 +9,7 @@
     Encuentra tu hotel ideal
 </h2>
 
-@if (!propiedadesDTO.Any())
+@if (propiedadesDTO == null || !propiedadesDTO.Any())
 {
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 60vh; text-align: center; color: #555;">
         <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No Hotels" style="width: 120px; margin-bottom: 20px; opacity: 0.7;" />
