@@ -105,8 +105,8 @@ using Repositorio.IRespositorio
     #line default
     #line hidden
 #nullable restore
-#line (10,12)-(10,23) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
-[Authorize]
+#line (10,12)-(10,56) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+[Authorize(Roles = "Administrador, Editor")]
 
 #line default
 #line hidden
@@ -132,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (190,8)-(338,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (191,8)-(339,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();

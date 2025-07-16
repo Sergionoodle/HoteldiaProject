@@ -105,8 +105,8 @@ using Repositorio.IRespositorio
     #line default
     #line hidden
 #nullable restore
-#line (9,12)-(9,23) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
-[Authorize]
+#line (9,12)-(9,66) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+[Authorize(Roles = "Administrador, Editor, Operador")]
 
 #line default
 #line hidden
@@ -132,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (99,8)-(135,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+#line (107,8)-(143,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
 
     private IEnumerable<PropiedadDTO> propiedadDTO { get; set; } = new List<PropiedadDTO>();
     private bool estado { get; set; } = false;

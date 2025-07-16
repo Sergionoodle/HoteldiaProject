@@ -2,13 +2,7 @@ wwwroot\app.css
 wwwroot\favicon.png
 wwwroot\HotelDiaLogo.png
 wwwroot\Imagenes\11c232bc-784d-49f1-8fe1-3e56f5a06e8f.png
-wwwroot\Imagenes\399d5f13-eed7-4dd0-9d9e-0f64e4769eb2.png
-wwwroot\Imagenes\410f94cf-0257-40ec-8f91-f7076b69bbcb.png
-wwwroot\Imagenes\586cdff1-a4c0-43dd-94b0-df9758bc3969.jpg
 wwwroot\Imagenes\7115abb5-fdc6-4860-bfcc-bd0cf4f695fb.png
-wwwroot\Imagenes\ab159b2b-ce56-487d-b7e4-87b78db478eb.jpeg
-wwwroot\Imagenes\ce3269b3-ccb2-4dc6-92a9-226d450269a6.jpeg
-wwwroot\Imagenes\fe93271f-c118-40c8-ba99-5d34bebbb452.png
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css

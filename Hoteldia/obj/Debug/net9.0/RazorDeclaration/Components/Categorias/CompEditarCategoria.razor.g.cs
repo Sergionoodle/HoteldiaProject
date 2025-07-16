@@ -112,6 +112,14 @@ using Repositorio.IRespositorio
 #line hidden
 #nullable disable
 
+#nullable restore
+#line (9,12)-(9,56) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompEditarCategoria.razor"
+[Authorize(Roles = "Administrador, Editor")]
+
+#line default
+#line hidden
+#nullable disable
+
     [global::Microsoft.AspNetCore.Components.RouteAttribute(
     // language=Route,Component
 #nullable restore
@@ -132,7 +140,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (71,8)-(123,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompEditarCategoria.razor"
+#line (73,8)-(125,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompEditarCategoria.razor"
 
     [Parameter]
     public int? Id { get; set; }

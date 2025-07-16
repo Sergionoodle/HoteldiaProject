@@ -105,8 +105,8 @@ using Repositorio.IRespositorio
     #line default
     #line hidden
 #nullable restore
-#line (7,12)-(7,23) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
-[Authorize]
+#line (7,12)-(7,66) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+[Authorize(Roles = "Administrador, Editor, Operador")]
 
 #line default
 #line hidden
@@ -132,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (83,8)-(109,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+#line (91,8)-(117,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
 
     private IEnumerable<CategoriaDTO> categoriaDTO { get; set; } = new List<CategoriaDTO>();
     private int? BorrarId { get; set; }

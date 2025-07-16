@@ -6,6 +6,8 @@
 @inject NavigationManager navigationManager
 @attribute [Authorize]
 
+@attribute [Authorize(Roles = "Administrador, Editor")]
+
 <h1 class="text-center">Crear Categoria</h1>
 
 @if (!string.IsNullOrEmpty(mensaje))

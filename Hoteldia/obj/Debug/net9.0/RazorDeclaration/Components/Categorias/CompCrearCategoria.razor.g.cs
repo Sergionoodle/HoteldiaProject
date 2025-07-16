@@ -112,6 +112,14 @@ using Repositorio.IRespositorio
 #line hidden
 #nullable disable
 
+#nullable restore
+#line (9,12)-(9,56) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCrearCategoria.razor"
+[Authorize(Roles = "Administrador, Editor")]
+
+#line default
+#line hidden
+#nullable disable
+
     [global::Microsoft.AspNetCore.Components.RouteAttribute(
     // language=Route,Component
 #nullable restore
@@ -132,7 +140,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (71,8)-(106,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCrearCategoria.razor"
+#line (73,8)-(108,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCrearCategoria.razor"
 
     private CategoriaDTO categoriaDTO { get; set; } = new CategoriaDTO();
 
