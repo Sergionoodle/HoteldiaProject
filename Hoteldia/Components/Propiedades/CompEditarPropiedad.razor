@@ -130,8 +130,8 @@
                 <div class="form-group row mt-2">
                     <label class="col-2 col-form-label">Categoría:</label>
                     <div class="col-6">
-                        <InputSelect @bind-Value="@categoriaSelect.Id" class="form-control">
-                            @foreach (var categoria in @DropDownCategoriaDTO)
+                        <InputSelect @bind-Value="@propiedadDTO.CategoriaId" class="form-control">
+                            @foreach (var categoria in DropDownCategoriaDTO)
                             {
                                 <option value="@categoria.Id">@categoria.NombreCategoria</option>
                             }
@@ -224,9 +224,7 @@
 
     private async Task ManejadorOnEditarPropiedad()
     {
-        //Se obtiene la categoría
-        propiedadDTO.CategoriaId = categoriaSelect.Id;
-
+     
         //Editamos la fecha de inicio
         propiedadDTO.FechaActualizacion = DateTime.Now;
 

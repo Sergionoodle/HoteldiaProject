@@ -132,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (192,8)-(318,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+#line (192,8)-(321,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
 
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();
@@ -167,7 +167,10 @@ using Repositorio.IRespositorio
         propiedadDTO.CategoriaId = categoriaSelect.Id;
         var propiedadCreated = await PropiedadRepositorio.CrearPropiedad(propiedadDTO);
         //Creamos el metodo que guardará las imagenes
-        await AgregarImagenesProp(propiedadCreated);
+        if (propiedadCreated.UrlImagenes != null && propiedadCreated.UrlImagenes.Any())
+        {
+            await AgregarImagenesProp(propiedadCreated);
+        }
         navigationManager.NavigateTo("propiedades");
     }
 

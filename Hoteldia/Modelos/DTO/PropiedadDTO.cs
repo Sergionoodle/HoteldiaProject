@@ -49,8 +49,8 @@ namespace Hoteldia.Modelos.DTO
         //Por aqui accederemos a la categoria
         public virtual Categoria Categoria { get; set; }
 
-        public virtual ICollection<ImagenPropiedad> ImagenPropiedad { get; set; }
+        public virtual ICollection<ImagenPropiedad> ImagenPropiedad { get; set; } = new List<ImagenPropiedad>();
 
-        public List<string> UrlImagenes { get; set; }
+        public List<string> UrlImagenes { get; set; } = new();
     }
 }

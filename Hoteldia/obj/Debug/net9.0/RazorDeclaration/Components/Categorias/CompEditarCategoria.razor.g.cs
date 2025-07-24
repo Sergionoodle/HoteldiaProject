@@ -179,7 +179,7 @@ using Repositorio.IRespositorio
                 mensaje = "Categoría actualizada correctamente.";
                 claseAlerta = "alert-success";
                 await Task.Delay(2000);
-                navigationManager.NavigateTo("category");
+                navigationManager.NavigateTo("/category");
             }
             else
             {

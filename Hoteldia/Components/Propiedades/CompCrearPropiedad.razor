@@ -223,7 +223,10 @@
         propiedadDTO.CategoriaId = categoriaSelect.Id;
         var propiedadCreated = await PropiedadRepositorio.CrearPropiedad(propiedadDTO);
         //Creamos el metodo que guardará las imagenes
-        await AgregarImagenesProp(propiedadCreated);
+        if (propiedadCreated.UrlImagenes != null && propiedadCreated.UrlImagenes.Any())
+        {
+            await AgregarImagenesProp(propiedadCreated);
+        }
         navigationManager.NavigateTo("propiedades");
     }
 

@@ -132,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (191,8)-(339,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (191,8)-(337,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();
@@ -169,9 +169,7 @@ using Repositorio.IRespositorio
 
     private async Task ManejadorOnEditarPropiedad()
     {
-        //Se obtiene la categoría
-        propiedadDTO.CategoriaId = categoriaSelect.Id;
-
+     
         //Editamos la fecha de inicio
         propiedadDTO.FechaActualizacion = DateTime.Now;
 
