@@ -22,7 +22,18 @@
 else
 {
     <div class="hotel-list" style="display: flex; flex-direction: column; gap: 30px; max-width: 1000px; margin: 40px auto;">
-        @foreach (var hotel in propiedadesDTO)
+        <!-- Vamos a crear el filtro para la busqueda de nuestros hoteles -->
+        <input @bind="@filtroNombre"
+               @bind:event="oninput"
+               placeholder="Buscar hotel por nombre..."
+               class="form-control"
+               style="margin-bottom: 20px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; width: 100%;" />
+
+               <!-- hacemos un where, para cuando 
+                    Si el filtro está vacío o en blanco (null, "", o solo espacios),
+                    se muestran todos los hoteles. Si tiene texto, se muestran solo
+                    aquellos hoteles cuyo nombre contiene el texto del filtro (sin importar mayúsculas/minúsculas). -->
+        @foreach (var hotel in propiedadesDTO.Where(h => string.IsNullOrWhiteSpace(filtroNombre) || h.Name.Contains(filtroNombre, StringComparison.OrdinalIgnoreCase)))
         {
             <div class="hotel-card" style="display: flex; flex-direction: row; border: 1px solid #e6e6e6; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #fff; transition: transform 0.2s;">
                 <div style="flex-shrink: 0; width: 280px; height: 200px; overflow: hidden;">
@@ -62,6 +73,9 @@ else
 @code {
     //Obtenemos las propiedades
     private IEnumerable<PropiedadDTO> propiedadesDTO { get; set; } = new List<PropiedadDTO>();
+
+    //Declaramos la variable para el filtro
+    private string filtroNombre = string.Empty;
 
     //El metodo que inicializa el proyecto
     protected override async Task OnInitializedAsync()

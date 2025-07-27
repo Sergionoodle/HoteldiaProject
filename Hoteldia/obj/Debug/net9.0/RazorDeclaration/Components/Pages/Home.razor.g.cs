@@ -118,10 +118,13 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (62,8)-(72,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Home.razor"
+#line (73,8)-(86,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Home.razor"
 
     //Obtenemos las propiedades
     private IEnumerable<PropiedadDTO> propiedadesDTO { get; set; } = new List<PropiedadDTO>();
+
+    //Declaramos la variable para el filtro
+    private string filtroNombre = string.Empty;
 
     //El metodo que inicializa el proyecto
     protected override async Task OnInitializedAsync()

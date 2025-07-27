@@ -132,11 +132,13 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (107,8)-(143,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+#line (113,8)-(151,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
 
     private IEnumerable<PropiedadDTO> propiedadDTO { get; set; } = new List<PropiedadDTO>();
     private bool estado { get; set; } = false;
     private int? BorrarId { get; set; }
+    
+    private string filtroNombre = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {

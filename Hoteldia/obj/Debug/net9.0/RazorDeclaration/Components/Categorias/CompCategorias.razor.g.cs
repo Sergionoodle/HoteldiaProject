@@ -132,10 +132,12 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (91,8)-(117,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
+#line (97,8)-(125,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Categorias\CompCategorias.razor"
 
     private IEnumerable<CategoriaDTO> categoriaDTO { get; set; } = new List<CategoriaDTO>();
     private int? BorrarId { get; set; }
+    
+    private string filtroNombre = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {

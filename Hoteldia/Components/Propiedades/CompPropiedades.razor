@@ -28,6 +28,12 @@
     </div>
 
     <div class="card-body">
+        <input @bind="@filtroNombre"
+               @bind:event="oninput"
+               placeholder="Buscar hotel por nombre..."
+               class="form-control"
+               style="margin-bottom: 20px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; width: 100%;" />
+
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -47,7 +53,7 @@
             <tbody>
                 @if (@propiedadDTO.Count() > 0)
                 {
-                    foreach (var propiedad in propiedadDTO)
+                    foreach (var propiedad in propiedadDTO.Where(h => string.IsNullOrWhiteSpace(filtroNombre) || h.Name.Contains(filtroNombre, StringComparison.OrdinalIgnoreCase)))
                     {
                         <tr>
                             <td>@propiedad.Id</td>
@@ -108,6 +114,8 @@
     private IEnumerable<PropiedadDTO> propiedadDTO { get; set; } = new List<PropiedadDTO>();
     private bool estado { get; set; } = false;
     private int? BorrarId { get; set; }
+    
+    private string filtroNombre = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
