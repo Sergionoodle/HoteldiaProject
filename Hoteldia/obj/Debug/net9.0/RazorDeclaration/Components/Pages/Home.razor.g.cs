@@ -118,7 +118,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (73,8)-(86,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Home.razor"
+#line (103,8)-(137,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Pages\Home.razor"
 
     //Obtenemos las propiedades
     private IEnumerable<PropiedadDTO> propiedadesDTO { get; set; } = new List<PropiedadDTO>();
@@ -126,10 +126,31 @@ using Repositorio.IRespositorio
     //Declaramos la variable para el filtro
     private string filtroNombre = string.Empty;
 
+    //Declaramos la variable para el filtro por ordenación
+    private string ordenSeleccionado = string.Empty;
+
     //El metodo que inicializa el proyecto
     protected override async Task OnInitializedAsync()
     {
         propiedadesDTO = await PropiedadRepositorio.GetAllPropiedads();
+    }
+
+    //Método que usaremos para la ordenación
+    private IEnumerable<PropiedadDTO> ObtenerHotelesFiltradosYOrdenados()
+    {
+        //Filtro para buscar por el texto del input
+        var query = propiedadesDTO.Where(h => string.IsNullOrWhiteSpace(filtroNombre) || h.Name.Contains(filtroNombre, StringComparison.OrdinalIgnoreCase));
+
+        //Hacemos el switch case para modificar la query y que ordene con el uso de 
+        //OrderBy...
+        return ordenSeleccionado switch
+        {
+            "precio" => query.OrderByDescending(h => h.Price),
+            "alfabetico" => query.OrderBy(h => h.Name),
+            "habitaciones" => query.OrderByDescending(h => h.Habitaciones),
+            "area" => query.OrderByDescending(h => h.Area),
+            _ => query
+        };
     }
 
 

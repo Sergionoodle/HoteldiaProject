@@ -22,18 +22,48 @@
 else
 {
     <div class="hotel-list" style="display: flex; flex-direction: column; gap: 30px; max-width: 1000px; margin: 40px auto;">
-        <!-- Vamos a crear el filtro para la busqueda de nuestros hoteles -->
-        <input @bind="@filtroNombre"
+    @*     <input @bind="@filtroNombre"
                @bind:event="oninput"
                placeholder="Buscar hotel por nombre..."
                class="form-control"
                style="margin-bottom: 20px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; width: 100%;" />
 
+
+        <select @bind="ordenSeleccionado"
+                class="form-control"
+                style="margin-bottom: 20px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; width: 100%;">
+            <option value="">-- Ordenar por --</option>
+            <option value="precio">Precio (Mayor a menor)</option>
+            <option value="alfabetico">Nombre (A-Z)</option>
+            <option value="habitaciones">Habitaciones (Mayor a menor)</option>
+            <option value="area">Área (Mayor a menor)</option>
+        </select> *@
+
+        <!-- Vamos a crear el filtro para la busqueda de nuestros hoteles -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px;">
+            <input @bind="@filtroNombre"
+                   @bind:event="oninput"
+                   placeholder="Buscar hotel por nombre..."
+                   class="form-control"
+                   style="flex: 1 1 300px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem;" />
+            
+            <!-- Ahora vamos a añadir el filtrado por orden -->
+            <select @bind="ordenSeleccionado"
+                    class="form-control"
+                    style="flex: 1 1 200px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem;">
+                <option value="">-- Ordenar por --</option>
+                <option value="precio">Precio (Mayor a menor)</option>
+                <option value="alfabetico">Nombre (A-Z)</option>
+                <option value="habitaciones">Habitaciones (Mayor a menor)</option>
+                <option value="area">Área (Mayor a menor)</option>
+            </select>
+        </div>
+
                <!-- hacemos un where, para cuando 
                     Si el filtro está vacío o en blanco (null, "", o solo espacios),
                     se muestran todos los hoteles. Si tiene texto, se muestran solo
                     aquellos hoteles cuyo nombre contiene el texto del filtro (sin importar mayúsculas/minúsculas). -->
-        @foreach (var hotel in propiedadesDTO.Where(h => string.IsNullOrWhiteSpace(filtroNombre) || h.Name.Contains(filtroNombre, StringComparison.OrdinalIgnoreCase)))
+        @foreach (var hotel in ObtenerHotelesFiltradosYOrdenados())
         {
             <div class="hotel-card" style="display: flex; flex-direction: row; border: 1px solid #e6e6e6; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #fff; transition: transform 0.2s;">
                 <div style="flex-shrink: 0; width: 280px; height: 200px; overflow: hidden;">
@@ -77,10 +107,31 @@ else
     //Declaramos la variable para el filtro
     private string filtroNombre = string.Empty;
 
+    //Declaramos la variable para el filtro por ordenación
+    private string ordenSeleccionado = string.Empty;
+
     //El metodo que inicializa el proyecto
     protected override async Task OnInitializedAsync()
     {
         propiedadesDTO = await PropiedadRepositorio.GetAllPropiedads();
+    }
+
+    //Método que usaremos para la ordenación
+    private IEnumerable<PropiedadDTO> ObtenerHotelesFiltradosYOrdenados()
+    {
+        //Filtro para buscar por el texto del input
+        var query = propiedadesDTO.Where(h => string.IsNullOrWhiteSpace(filtroNombre) || h.Name.Contains(filtroNombre, StringComparison.OrdinalIgnoreCase));
+
+        //Hacemos el switch case para modificar la query y que ordene con el uso de 
+        //OrderBy...
+        return ordenSeleccionado switch
+        {
+            "precio" => query.OrderByDescending(h => h.Price),
+            "alfabetico" => query.OrderBy(h => h.Name),
+            "habitaciones" => query.OrderByDescending(h => h.Habitaciones),
+            "area" => query.OrderByDescending(h => h.Area),
+            _ => query
+        };
     }
 
 }
