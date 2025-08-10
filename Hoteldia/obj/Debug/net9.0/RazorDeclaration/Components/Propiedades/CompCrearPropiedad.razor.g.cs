@@ -105,7 +105,7 @@ using Repositorio.IRespositorio
     #line default
     #line hidden
 #nullable restore
-#line (11,12)-(11,56) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+#line (12,12)-(12,56) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
 [Authorize(Roles = "Administrador, Editor")]
 
 #line default
@@ -132,10 +132,11 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (192,8)-(321,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+#line (207,8)-(341,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
 
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();
+    private CountryDropDownDTO countrySelect = new CountryDropDownDTO();
 
     //Miramos si esta iniciado el proceso de subida
     private bool estaIniciadoProcesoSubidaImagen { get; set; } = false;
@@ -143,11 +144,14 @@ using Repositorio.IRespositorio
     //Obtenemos la lista de categorias en un dropdown
     private IEnumerable<DropDownCategoriaDTO> DropDownCategoriaDTO { get; set; } = new List<DropDownCategoriaDTO>();
 
+    private IEnumerable<CountryDropDownDTO> CountryDropDownDTO { get; set; } = new List<CountryDropDownDTO>();
+
     private ImagenPropiedadDTO imagenDTO { get; set; } = new ImagenPropiedadDTO();
     protected override async Task OnInitializedAsync()
     {
         //Recuperamos el dropdown
         DropDownCategoriaDTO = await CategoriaRepositorio.GetDropDownCategorias();
+        CountryDropDownDTO = await CountryRepositorio.GetDropDownCountry();
     }
 
     private string mensaje;
@@ -165,6 +169,7 @@ using Repositorio.IRespositorio
         }
         //Le pasamos la categoria seleccionada
         propiedadDTO.CategoriaId = categoriaSelect.Id;
+        propiedadDTO.CountryId = countrySelect.Id;
         var propiedadCreated = await PropiedadRepositorio.CrearPropiedad(propiedadDTO);
         //Creamos el metodo que guardará las imagenes
         if (propiedadCreated.UrlImagenes != null && propiedadCreated.UrlImagenes.Any())
@@ -269,7 +274,7 @@ using Repositorio.IRespositorio
 
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (9,9)-(9,35) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+#line (10,9)-(10,35) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
 IImagenPropiedadRepositori
 
 #line default
@@ -277,7 +282,7 @@ IImagenPropiedadRepositori
 #nullable disable
          
 #nullable restore
-#line (9,36)-(9,62) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+#line (10,36)-(10,62) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
 ImagenPropiedadRepositorio
 
 #line default
@@ -287,7 +292,7 @@ ImagenPropiedadRepositorio
          = default!;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (8,9)-(8,16) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+#line (9,9)-(9,16) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
 ISubida
 
 #line default
@@ -295,8 +300,26 @@ ISubida
 #nullable disable
          
 #nullable restore
-#line (8,17)-(8,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+#line (9,17)-(9,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
 SubidaArchivo
+
+#line default
+#line hidden
+#nullable disable
+         { get; set; }
+         = default!;
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
+#nullable restore
+#line (8,9)-(8,28) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+ICountryRepositorio
+
+#line default
+#line hidden
+#nullable disable
+         
+#nullable restore
+#line (8,29)-(8,47) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+CountryRepositorio
 
 #line default
 #line hidden

@@ -39,5 +39,10 @@ namespace Hoteldia.Modelos
 
         //Relacion imagen propiedad
         public virtual ICollection<ImagenPropiedad> ImagenPropiedad {  get; set; }
+
+        //Relacion con country
+        public int? CountryId { get; set; }
+        [ForeignKey("CountryId")]
+        public virtual Country Country { get; set; }
     }
 }

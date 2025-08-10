@@ -5,6 +5,7 @@
 @inject IPropiedadRepositorio PropiedadRepositorio
 @inject NavigationManager navigationManager
 @inject ICategoriaRepositorio CategoriaRepositorio
+@inject ICountryRepositorio CountryRepositorio
 @inject ISubida SubidaArchivo
 @inject IImagenPropiedadRepositori ImagenPropiedadRepositorio
 
@@ -127,7 +128,7 @@
                     </div>
                 </div>
 
-                @* DropDown *@
+                @* DropDown Categorias *@
                 <div class="form-group row mt-2">
                     <label class="col-2 col-form-label">Categoría:</label>
                     <div class="col-6">
@@ -138,6 +139,20 @@
                             }
                         </InputSelect>
                         <ValidationMessage For="() => propiedadDTO.CategoriaId" />
+                    </div>
+                </div>
+                
+                @* DropDown Countries *@
+                <div class="form-group row mt-2">
+                    <label class="col-2 col-form-label">País:</label>
+                    <div class="col-6">
+                        <InputSelect @bind-Value="@countrySelect.Id" class="form-control">
+                            @foreach (var country in @CountryDropDownDTO)
+                            {
+                                <option value="@country.Id">@country.Name</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="() => propiedadDTO.CountryId" />
                     </div>
                 </div>
 
@@ -192,6 +207,7 @@
 @code {
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();
+    private CountryDropDownDTO countrySelect = new CountryDropDownDTO();
 
     //Miramos si esta iniciado el proceso de subida
     private bool estaIniciadoProcesoSubidaImagen { get; set; } = false;
@@ -199,11 +215,14 @@
     //Obtenemos la lista de categorias en un dropdown
     private IEnumerable<DropDownCategoriaDTO> DropDownCategoriaDTO { get; set; } = new List<DropDownCategoriaDTO>();
 
+    private IEnumerable<CountryDropDownDTO> CountryDropDownDTO { get; set; } = new List<CountryDropDownDTO>();
+
     private ImagenPropiedadDTO imagenDTO { get; set; } = new ImagenPropiedadDTO();
     protected override async Task OnInitializedAsync()
     {
         //Recuperamos el dropdown
         DropDownCategoriaDTO = await CategoriaRepositorio.GetDropDownCategorias();
+        CountryDropDownDTO = await CountryRepositorio.GetDropDownCountry();
     }
 
     private string mensaje;
@@ -221,6 +240,7 @@
         }
         //Le pasamos la categoria seleccionada
         propiedadDTO.CategoriaId = categoriaSelect.Id;
+        propiedadDTO.CountryId = countrySelect.Id;
         var propiedadCreated = await PropiedadRepositorio.CrearPropiedad(propiedadDTO);
         //Creamos el metodo que guardará las imagenes
         if (propiedadCreated.UrlImagenes != null && propiedadCreated.UrlImagenes.Any())

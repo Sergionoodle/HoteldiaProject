@@ -52,5 +52,9 @@ namespace Hoteldia.Modelos.DTO
         public virtual ICollection<ImagenPropiedad> ImagenPropiedad { get; set; } = new List<ImagenPropiedad>();
 
         public List<string> UrlImagenes { get; set; } = new();
+
+        //Añadimos el countrydto
+        public int CountryId { get; set; }
+
     }
 }

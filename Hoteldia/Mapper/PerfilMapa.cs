@@ -18,6 +18,10 @@ namespace Hoteldia.Mapper
 
             //Agregamos el mapeo de imagenpropiedad
             CreateMap<ImagenPropiedad, ImagenPropiedadDTO>().ReverseMap();
+
+            CreateMap<Country, CountryDTO>().ReverseMap();
+            CreateMap<Country, CountryDropDownDTO>().ReverseMap();
+
         }
     }
 }

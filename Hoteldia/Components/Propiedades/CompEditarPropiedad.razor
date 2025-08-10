@@ -5,6 +5,7 @@
 @inject IPropiedadRepositorio PropiedadRepositorio
 @inject NavigationManager navigationManager
 @inject ICategoriaRepositorio CategoriaRepositorio
+@inject ICountryRepositorio CountryRepositorio
 @inject ISubida SubidaArchivo
 @inject IImagenPropiedadRepositori ImagenPropiedadRepositorio
 @attribute [Authorize(Roles = "Administrador, Editor")]
@@ -140,6 +141,20 @@
                     </div>
                 </div>
 
+                @* DropDown Countries *@
+                <div class="form-group row mt-2">
+                    <label class="col-2 col-form-label">País:</label>
+                    <div class="col-6">
+                        <InputSelect @bind-Value="@propiedadDTO.CountryId" class="form-control">
+                            @foreach (var country in @CountryDropDownDTO)
+                            {
+                                <option value="@country.Id">@country.Name</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="() => propiedadDTO.CountryId" />
+                    </div>
+                </div>
+
                 @* Imagenes *@
                 <div class="form-group row mt-2">
                     <hr />
@@ -191,12 +206,15 @@
 @code {
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();
+    private CountryDropDownDTO countrySelect = new CountryDropDownDTO();
 
     //Miramos si esta iniciado el proceso de subida
     private bool estaIniciadoProcesoSubidaImagen { get; set; } = false;
 
     //Obtenemos la lista de categorias en un dropdown
     private IEnumerable<DropDownCategoriaDTO> DropDownCategoriaDTO { get; set; } = new List<DropDownCategoriaDTO>();
+    private IEnumerable<CountryDropDownDTO> CountryDropDownDTO { get; set; } = new List<CountryDropDownDTO>();
+
     private ImagenPropiedadDTO imagenDTO { get; set; } = new ImagenPropiedadDTO();
     private List<string> NombresImgBorradas { get; set; } = new List<string>();
 
@@ -207,6 +225,7 @@
     {
         //Recuperamos el dropdown
         DropDownCategoriaDTO = await CategoriaRepositorio.GetDropDownCategorias();
+        CountryDropDownDTO = await CountryRepositorio.GetDropDownCountry();
 
         if(Id != null)
         {
