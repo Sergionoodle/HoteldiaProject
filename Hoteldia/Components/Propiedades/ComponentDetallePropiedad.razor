@@ -175,7 +175,7 @@
 {
     <div class="container">
         <h1 class="title">@propiedadDTO.Name</h1>
-        <p class="location">📍 @propiedadDTO.Place</p>
+        <p class="location">📍 @(propiedadDTO.Country?.Name ?? "Country not found") - @propiedadDTO.Place</p>
 
         <div class="swiper-container swiper mySwiper">
             <div class="swiper-wrapper">

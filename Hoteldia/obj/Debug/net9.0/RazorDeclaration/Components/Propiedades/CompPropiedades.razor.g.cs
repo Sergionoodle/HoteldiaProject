@@ -132,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (113,8)-(151,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+#line (115,8)-(153,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
 
     private IEnumerable<PropiedadDTO> propiedadDTO { get; set; } = new List<PropiedadDTO>();
     private bool estado { get; set; } = false;

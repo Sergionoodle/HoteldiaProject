@@ -56,5 +56,8 @@ namespace Hoteldia.Modelos.DTO
         //Añadimos el countrydto
         public int CountryId { get; set; }
 
+        //Por aqui accederemos al pais
+        public Country Country { get; set; }
+
     }
 }

@@ -71,7 +71,7 @@ namespace Hoteldia.Repositorio
             {
                 IEnumerable<PropiedadDTO> propiedadDTO =
                     _mapper.Map<IEnumerable<Propiedad>, IEnumerable<PropiedadDTO>>
-                    (_db.Propiedad.Include(x => x.ImagenPropiedad).Include(c => c.Categoria));
+                    (_db.Propiedad.Include(x => x.ImagenPropiedad).Include(c => c.Categoria).Include(co => co.Country));
                 return propiedadDTO;
             } 
             catch (Exception ex)

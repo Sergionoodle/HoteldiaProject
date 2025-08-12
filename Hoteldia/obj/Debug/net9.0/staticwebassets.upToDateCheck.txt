@@ -6,10 +6,12 @@ wwwroot\Imagenes\0d968951-9b67-4821-8716-bece4279bf04.jpg
 wwwroot\Imagenes\11c232bc-784d-49f1-8fe1-3e56f5a06e8f.png
 wwwroot\Imagenes\22b556d5-9b18-4cf3-bbd3-4ae4e4fc1894.png
 wwwroot\Imagenes\2da8e276-62e2-471a-8248-09da43eccffd.jpg
+wwwroot\Imagenes\30edd067-bc18-4d49-bc52-b4b235271223.jpg
 wwwroot\Imagenes\32fbae6d-3a94-4d92-a664-7b4efe99bfee.jpg
 wwwroot\Imagenes\49054f33-7f93-4dd9-9ca2-a8528ec343df.jpg
 wwwroot\Imagenes\4b1dce41-4efd-4e87-87db-b3a844863493.jpg
 wwwroot\Imagenes\52c5f4b7-9121-4a1d-aba0-10c76358e0e7.jpg
+wwwroot\Imagenes\53784be1-bb46-4b1b-bfca-d352e10cb1ed.jpg
 wwwroot\Imagenes\56521849-e223-4a96-832d-b08671672199.jpg
 wwwroot\Imagenes\5b1c1881-f4a1-4948-b904-27f1f51de185.jpg
 wwwroot\Imagenes\7115abb5-fdc6-4860-bfcc-bd0cf4f695fb.png
