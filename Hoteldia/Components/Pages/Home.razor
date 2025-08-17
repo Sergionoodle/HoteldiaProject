@@ -57,43 +57,78 @@ else
                 <option value="habitaciones">Habitaciones (Mayor a menor)</option>
                 <option value="area">Área (Mayor a menor)</option>
             </select>
+
+
+            <!-- Ahora vamos a añadir el filtrado por country -->
+            <select @bind="ordenCountry"
+                    class="form-control"
+                    style="flex: 1 1 200px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem;">
+                <option value="">-- Ordenar por país --</option>
+
+                @foreach (var countries in @countriesSelected)
+                {
+                    <option value="@countries">@countries</option>
+                }    
+            </select>
         </div>
 
                <!-- hacemos un where, para cuando 
                     Si el filtro está vacío o en blanco (null, "", o solo espacios),
                     se muestran todos los hoteles. Si tiene texto, se muestran solo
                     aquellos hoteles cuyo nombre contiene el texto del filtro (sin importar mayúsculas/minúsculas). -->
-        @foreach (var hotel in ObtenerHotelesFiltradosYOrdenados())
+        @{
+            var hotelesFiltrados = ObtenerHotelesFiltradosYOrdenados();
+        }
+
+        @if (!hotelesFiltrados.Any())
         {
-            <div class="hotel-card" style="display: flex; flex-direction: row; border: 1px solid #e6e6e6; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #fff; transition: transform 0.2s;">
-                <div style="flex-shrink: 0; width: 280px; height: 200px; overflow: hidden;">
-                    <img src="@(hotel.ImagenPropiedad?.FirstOrDefault()?.UrlImagen ?? "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg")"
-                         alt="Hotel Image"
-                         style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-                </div>
-                <div style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
-                    <div>
-                        <h3 style="margin: 0; font-size: 1.4rem; font-weight: 600; color: #003580;">@hotel.Name</h3>
-                        <p style="color: #888; font-size: 0.95rem; margin-top: 4px;">📍 @hotel.Country.Name (@hotel.Place)</p>
-                        <p style="color: #444; font-size: 0.95rem; margin-top: 8px;">@hotel.Descripcion</p>
-                        <div style="margin-top: 10px; font-size: 0.9rem; color: #555;">
-                            <span style="margin-right: 15px;">🛏️ @hotel.Habitaciones habs</span>
-                            <span style="margin-right: 15px;">🛁 @hotel.Banios baños</span>
-                            <span>📐 @hotel.Area m²</span>
-                        </div>
-                    </div>
-                    <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: bold; color: #d9534f;">@hotel.Price.ToString("C")</span>
-                            <span style="font-size: 0.85rem; color: #777;"> / noche</span>
-                        </div>
-                        <NavLink href="@($"detalle-propiedad/{hotel.Id}")"
-                                 style="padding: 8px 16px; background-color: #0071c2; color: white; border-radius: 5px; text-decoration: none; font-size: 0.95rem;">
-                            Ver detalles
-                        </NavLink>
-                    </div>
-                </div>
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; border: 2px dashed #0071c2; border-radius: 15px; background: #f9fbff; text-align: center;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png"
+                     alt="Hotel Not Found"
+                     style="width: 120px; margin-bottom: 20px; opacity: 0.8;" />
+                <h2 style="font-size: 1.6rem; margin-bottom: 10px; color: #003580; font-weight: 700;">
+                    😔 Hotel no encontrado
+                </h2>
+                <p style="font-size: 1rem; color: #555; max-width: 400px;">
+                    No hemos encontrado ningún hotel con ese criterio de búsqueda.<br />
+                    Prueba con otro nombre o ajusta los filtros.
+                </p>
             </div>
+        }
+        else
+        {
+            @foreach (var hotel in hotelesFiltrados)
+            {
+                <div class="hotel-card" style="display: flex; flex-direction: row; border: 1px solid #e6e6e6; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #fff; transition: transform 0.2s;">
+                    <div style="flex-shrink: 0; width: 280px; height: 200px; overflow: hidden;">
+                        <img src="@(hotel.ImagenPropiedad?.FirstOrDefault()?.UrlImagen ?? "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg")"
+                             alt="Hotel Image"
+                             style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                    </div>
+                    <div style="flex-grow: 1; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.4rem; font-weight: 600; color: #003580;">@hotel.Name</h3>
+                            <p style="color: #888; font-size: 0.95rem; margin-top: 4px;">📍 @hotel.Country.Name (@hotel.Place)</p>
+                            <p style="color: #444; font-size: 0.95rem; margin-top: 8px;">@hotel.Descripcion</p>
+                            <div style="margin-top: 10px; font-size: 0.9rem; color: #555;">
+                                <span style="margin-right: 15px;">🛏️ @hotel.Habitaciones habs</span>
+                                <span style="margin-right: 15px;">🛁 @hotel.Banios baños</span>
+                                <span>📐 @hotel.Area m²</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-size: 1.2rem; font-weight: bold; color: #d9534f;">@hotel.Price.ToString("C")</span>
+                                <span style="font-size: 0.85rem; color: #777;"> / noche</span>
+                            </div>
+                            <NavLink href="@($"detalle-propiedad/{hotel.Id}")"
+                                     style="padding: 8px 16px; background-color: #0071c2; color: white; border-radius: 5px; text-decoration: none; font-size: 0.95rem;">
+                                Ver detalles
+                            </NavLink>
+                        </div>
+                    </div>
+                </div>
+            }
         }
     </div>
 }
@@ -110,10 +145,16 @@ else
     //Declaramos la variable para el filtro por ordenación
     private string ordenSeleccionado = string.Empty;
 
+    //Declaramos la variable para el filtro por ordenación
+    private string ordenCountry = string.Empty;
+
+    private List<string> countriesSelected = new();
+
     //El metodo que inicializa el proyecto
     protected override async Task OnInitializedAsync()
     {
         propiedadesDTO = await PropiedadRepositorio.GetAllPropiedads();
+        countriesSelected = propiedadesDTO.Select(hotel => hotel.Country.Name).Distinct().ToList();
     }
 
     //Método que usaremos para la ordenación
@@ -121,6 +162,12 @@ else
     {
         //Filtro para buscar por el texto del input
         var query = propiedadesDTO.Where(h => string.IsNullOrWhiteSpace(filtroNombre) || h.Name.Contains(filtroNombre, StringComparison.OrdinalIgnoreCase));
+
+        //Si el país esta rellenado, filtramos
+        if (!string.IsNullOrWhiteSpace(ordenCountry))
+        {
+            query = query.Where(h => h.Country.Name == ordenCountry);
+        }
 
         //Hacemos el switch case para modificar la query y que ordene con el uso de 
         //OrderBy...
