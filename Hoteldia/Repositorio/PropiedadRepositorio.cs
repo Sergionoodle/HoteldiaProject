@@ -62,7 +62,8 @@ namespace Hoteldia.Repositorio
             propiedad.FechaCreacion = DateTime.Now;
             var propiedadAgregada = await _db.Propiedad.AddAsync(propiedad);
             await _db.SaveChangesAsync();
-            return _mapper.Map<Propiedad, PropiedadDTO>(propiedadAgregada.Entity);
+            var response = _mapper.Map<Propiedad, PropiedadDTO>(propiedadAgregada.Entity);
+            return response;
         }
 
         public async Task<IEnumerable<PropiedadDTO>> GetAllPropiedads()

@@ -172,7 +172,7 @@ using Repositorio.IRespositorio
         propiedadDTO.CountryId = countrySelect.Id;
         var propiedadCreated = await PropiedadRepositorio.CrearPropiedad(propiedadDTO);
         //Creamos el metodo que guardará las imagenes
-        if (propiedadCreated.UrlImagenes != null && propiedadCreated.UrlImagenes.Any())
+        if (propiedadDTO.UrlImagenes != null && propiedadDTO.UrlImagenes.Any())
         {
             await AgregarImagenesProp(propiedadCreated);
         }
