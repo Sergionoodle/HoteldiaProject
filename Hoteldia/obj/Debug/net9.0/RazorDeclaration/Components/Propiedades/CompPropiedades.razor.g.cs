@@ -132,21 +132,17 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (115,8)-(153,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+#line (163,8)-(198,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
 
     private IEnumerable<PropiedadDTO> propiedadDTO { get; set; } = new List<PropiedadDTO>();
-    private bool estado { get; set; } = false;
     private int? BorrarId { get; set; }
-    
     private string filtroNombre = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
-
         //Recuperamos todas las categorias
         propiedadDTO = await PropiedadRepositorio.GetAllPropiedads();
     }
-
 
     private async Task ManejadorOnBorrar(int propiedadId)
     {
@@ -158,8 +154,9 @@ using Repositorio.IRespositorio
         if (confirm && BorrarId != null)
         {
             //Borramos las imagenes asociadas a la propiedad
+
             PropiedadDTO prop = await PropiedadRepositorio.GetPropiedad(BorrarId.Value);
-            foreach(var img in prop.ImagenPropiedad)
+            foreach (var img in prop.ImagenPropiedad)
             {
                 var nomImg = img.UrlImagen.Replace($"{navigationManager.BaseUri}Imagenes/", "");
                 subidaArchivo.BorrarArchivo(nomImg);

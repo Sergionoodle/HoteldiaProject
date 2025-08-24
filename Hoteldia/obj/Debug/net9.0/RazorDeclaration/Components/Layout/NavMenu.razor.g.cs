@@ -104,7 +104,7 @@ IDisposable
         }
         #pragma warning restore 1998
 #nullable restore
-#line (80,8)-(99,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Layout\NavMenu.razor"
+#line (79,8)-(98,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Layout\NavMenu.razor"
 
     private string? currentUrl;
 

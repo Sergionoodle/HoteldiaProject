@@ -132,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (207,8)-(341,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
+#line (207,8)-(342,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompCrearPropiedad.razor"
 
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();
@@ -186,10 +186,10 @@ using Repositorio.IRespositorio
             if (propiedadDTO.ImagenPropiedad == null || propiedadDTO.ImagenPropiedad.Where(x => x.UrlImagen == url).Count() == 0)
             {
                 imagenDTO = new ImagenPropiedadDTO()
-                    {
+                {
                     PropiedadId = propiedad.Id,
                     UrlImagen = url
-                    };
+                };
                 await ImagenPropiedadRepositorio.CrearPropiedadImagen(imagenDTO);
             }
         }
@@ -255,13 +255,14 @@ using Repositorio.IRespositorio
         {
             var imageIndex = propiedadDTO.UrlImagenes.FindIndex(x => x == urlImagen);
             var nombre = urlImagen.Replace($"{navigationManager.BaseUri}Imagenes/", "");
-            if(propiedadDTO.Id == 0)
+            if (propiedadDTO.Id == 0)
             {
                 var result = SubidaArchivo.BorrarArchivo(nombre);
             }
             propiedadDTO.UrlImagenes.RemoveAt(imageIndex);
 
-        } catch (Exception)
+        }
+        catch (Exception)
         {
             mensaje = "Ocurrió un error al crear la propiedad.";
             claseAlerta = "alert-danger";

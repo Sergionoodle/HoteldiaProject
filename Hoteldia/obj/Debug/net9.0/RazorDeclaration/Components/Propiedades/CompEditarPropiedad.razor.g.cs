@@ -132,7 +132,7 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (206,8)-(356,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
+#line (206,8)-(350,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompEditarPropiedad.razor"
 
     private PropiedadDTO propiedadDTO { get; set; } = new PropiedadDTO();
     private DropDownCategoriaDTO categoriaSelect = new DropDownCategoriaDTO();
@@ -153,17 +153,16 @@ using Repositorio.IRespositorio
 
     protected override async Task OnInitializedAsync()
     {
-        //Recuperamos el dropdown
         DropDownCategoriaDTO = await CategoriaRepositorio.GetDropDownCategorias();
         CountryDropDownDTO = await CountryRepositorio.GetDropDownCountry();
 
-        if(Id != null)
+        if (Id != null)
         {
             propiedadDTO = await PropiedadRepositorio.GetPropiedad(Id.Value);
 
-            if(propiedadDTO?.ImagenPropiedad != null) 
+            if (propiedadDTO?.ImagenPropiedad != null)
             {
-                propiedadDTO.UrlImagenes = propiedadDTO.ImagenPropiedad.Select(u => u.UrlImagen).ToList();    
+                propiedadDTO.UrlImagenes = propiedadDTO.ImagenPropiedad.Select(u => u.UrlImagen).ToList();
             }
         }
     }
@@ -173,11 +172,8 @@ using Repositorio.IRespositorio
 
     private async Task ManejadorOnEditarPropiedad()
     {
-     
-        //Editamos la fecha de inicio
         propiedadDTO.FechaActualizacion = DateTime.Now;
 
-        //Si entra se actualiza la propiedad con imagenes 
         var resultadoActualizar = await PropiedadRepositorio.ActualizarPropiedad(propiedadDTO.Id, propiedadDTO);
 
         if (propiedadDTO.UrlImagenes != null && propiedadDTO.UrlImagenes.Any() || NombresImgBorradas != null && NombresImgBorradas.Any())
@@ -203,23 +199,21 @@ using Repositorio.IRespositorio
             if (propiedadDTO.ImagenPropiedad == null || propiedadDTO.ImagenPropiedad.Where(x => x.UrlImagen == url).Count() == 0)
             {
                 imagenDTO = new ImagenPropiedadDTO()
-                    {
+                {
                     PropiedadId = propiedad.Id,
                     UrlImagen = url
-                    };
+                };
                 await ImagenPropiedadRepositorio.CrearPropiedadImagen(imagenDTO);
             }
         }
     }
 
-    //Le pasamos el archivo que vamos a guardar
     private async Task ManejadorOnSubidaArchivo(InputFileChangeEventArgs e)
     {
         estaIniciadoProcesoSubidaImagen = true;
         try
         {
             var imagenes = new List<string>();
-            //Si hay una imagen
             if (e.GetMultipleFiles().Count() > 0)
             {
                 foreach (var file in e.GetMultipleFiles())
@@ -244,7 +238,6 @@ using Repositorio.IRespositorio
                     {
                         propiedadDTO.UrlImagenes.AddRange(imagenes);
                     }
-                    //Si no existen, se le agregan
                     else
                     {
                         propiedadDTO.UrlImagenes = new List<string>();
@@ -277,7 +270,8 @@ using Repositorio.IRespositorio
 
             propiedadDTO.UrlImagenes.RemoveAt(imageIndex);
 
-        } catch (Exception)
+        }
+        catch (Exception)
         {
             mensaje = "Ocurrió un error al crear la propiedad.";
             claseAlerta = "alert-danger";

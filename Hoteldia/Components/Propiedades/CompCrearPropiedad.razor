@@ -25,7 +25,7 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-7">
+            <div class="col-12 col-md-7">
                 <h2 class="text-dark">Nueva Propiedad</h2>
             </div>
         </div>
@@ -40,8 +40,8 @@
 
                 @* Nombre *@
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Nombre:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Nombre:</label>
+                    <div class="col-12 col-md-6">
                         <InputText @bind-Value="@propiedadDTO.Name" class="form-control" placeholder="Ingresa el nombre" />
                         <ValidationMessage For="() => propiedadDTO.Name" />
                     </div>
@@ -49,8 +49,8 @@
 
                 @* Descripción *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Descripción:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Descripción:</label>
+                    <div class="col-12 col-md-6">
                         <InputText @bind-Value="@propiedadDTO.Descripcion" class="form-control" placeholder="Ingresa la descripción" />
                         <ValidationMessage For="() => propiedadDTO.Descripcion" />
                     </div>
@@ -58,8 +58,8 @@
 
                 @* Área *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Área (m²):</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Área (m²):</label>
+                    <div class="col-12 col-md-6">
                         <InputNumber @bind-Value="@propiedadDTO.Area" class="form-control" />
                         <ValidationMessage For="() => propiedadDTO.Area" />
                     </div>
@@ -67,8 +67,8 @@
 
                 @* Habitaciones *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Habitaciones:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Habitaciones:</label>
+                    <div class="col-12 col-md-6">
                         <InputNumber @bind-Value="@propiedadDTO.Habitaciones" class="form-control" />
                         <ValidationMessage For="() => propiedadDTO.Habitaciones" />
                     </div>
@@ -76,8 +76,8 @@
 
                 @* Baños *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Baños:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Baños:</label>
+                    <div class="col-12 col-md-6">
                         <InputNumber @bind-Value="@propiedadDTO.Banios" class="form-control" />
                         <ValidationMessage For="() => propiedadDTO.Banios" />
                     </div>
@@ -85,8 +85,8 @@
 
                 @* Latitud *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Latitud:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Latitud:</label>
+                    <div class="col-12 col-md-6">
                         <InputNumber @bind-Value="@propiedadDTO.Latitude" class="form-control" step="any" />
                         <ValidationMessage For="() => propiedadDTO.Latitude" />
                     </div>
@@ -94,8 +94,8 @@
 
                 @* Longitud *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Longitud:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Longitud:</label>
+                    <div class="col-12 col-md-6">
                         <InputNumber @bind-Value="@propiedadDTO.Longitude" class="form-control" step="any" />
                         <ValidationMessage For="() => propiedadDTO.Longitude" />
                     </div>
@@ -103,8 +103,8 @@
 
                 @* Lugar *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Lugar:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Lugar:</label>
+                    <div class="col-12 col-md-6">
                         <InputText @bind-Value="@propiedadDTO.Place" class="form-control" placeholder="Ingresa el lugar" />
                         <ValidationMessage For="() => propiedadDTO.Place" />
                     </div>
@@ -112,8 +112,8 @@
 
                 @* Precio *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Precio:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Precio:</label>
+                    <div class="col-12 col-md-6">
                         <InputNumber @bind-Value="@propiedadDTO.Price" class="form-control" step="any" />
                         <ValidationMessage For="() => propiedadDTO.Price" />
                     </div>
@@ -121,8 +121,8 @@
 
                 @* Activo *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">¿Activo?</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">¿Activo?</label>
+                    <div class="col-12 col-md-6">
                         <InputCheckbox @bind-Value="@propiedadDTO.Activo" class="form-check-input" />
                         <ValidationMessage For="() => propiedadDTO.Activo" />
                     </div>
@@ -130,8 +130,8 @@
 
                 @* DropDown Categorias *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">Categoría:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">Categoría:</label>
+                    <div class="col-12 col-md-6">
                         <InputSelect @bind-Value="@categoriaSelect.Id" class="form-control">
                             @foreach (var categoria in @DropDownCategoriaDTO)
                             {
@@ -141,11 +141,11 @@
                         <ValidationMessage For="() => propiedadDTO.CategoriaId" />
                     </div>
                 </div>
-                
+
                 @* DropDown Countries *@
                 <div class="form-group row mt-2">
-                    <label class="col-2 col-form-label">País:</label>
-                    <div class="col-6">
+                    <label class="col-12 col-md-2 col-form-label">País:</label>
+                    <div class="col-12 col-md-6">
                         <InputSelect @bind-Value="@countrySelect.Id" class="form-control">
                             @foreach (var country in @CountryDropDownDTO)
                             {
@@ -174,7 +174,7 @@
                             int serial = 1;
                             foreach (var imagenProp in propiedadDTO.UrlImagenes)
                             {
-                                <div class="col-md-2 mt-3">
+                                <div class="col-6 col-md-2 mt-3">
                                     <div class="imagen-propiedad" style="background: url('@imagenProp') 50% 50%">
                                         <span class="titulo-imagen-pripiedad">@serial</span>
                                     </div>
@@ -192,11 +192,11 @@
 
                 @* Botones *@
                 <div class="form-group row mt-4">
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-success">Guardar</button>
+                    <div class="col-12 col-md-2 mb-2 mb-md-0">
+                        <button type="submit" class="btn btn-success w-100">Guardar</button>
                     </div>
-                    <div class="col-6">
-                        <NavLink href="propiedades" class="btn btn-primary">Volver</NavLink>
+                    <div class="col-12 col-md-6">
+                        <NavLink href="propiedades" class="btn btn-primary w-100">Volver</NavLink>
                     </div>
                 </div>
             </div>
@@ -257,10 +257,10 @@
             if (propiedadDTO.ImagenPropiedad == null || propiedadDTO.ImagenPropiedad.Where(x => x.UrlImagen == url).Count() == 0)
             {
                 imagenDTO = new ImagenPropiedadDTO()
-                    {
+                {
                     PropiedadId = propiedad.Id,
                     UrlImagen = url
-                    };
+                };
                 await ImagenPropiedadRepositorio.CrearPropiedadImagen(imagenDTO);
             }
         }
@@ -326,13 +326,14 @@
         {
             var imageIndex = propiedadDTO.UrlImagenes.FindIndex(x => x == urlImagen);
             var nombre = urlImagen.Replace($"{navigationManager.BaseUri}Imagenes/", "");
-            if(propiedadDTO.Id == 0)
+            if (propiedadDTO.Id == 0)
             {
                 var result = SubidaArchivo.BorrarArchivo(nombre);
             }
             propiedadDTO.UrlImagenes.RemoveAt(imageIndex);
 
-        } catch (Exception)
+        }
+        catch (Exception)
         {
             mensaje = "Ocurrió un error al crear la propiedad.";
             claseAlerta = "alert-danger";
