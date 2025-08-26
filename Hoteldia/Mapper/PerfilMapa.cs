@@ -21,6 +21,7 @@ namespace Hoteldia.Mapper
 
             CreateMap<Country, CountryDTO>().ReverseMap();
             CreateMap<Country, CountryDropDownDTO>().ReverseMap();
+            CreateMap<Habitacion, HabitacionDTO>().ReverseMap();
 
         }
     }

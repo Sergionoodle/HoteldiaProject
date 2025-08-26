@@ -19,6 +19,7 @@ namespace Hoteldia.Data
         //Añadimos 
         public DbSet<Country> Country { get; set; }
 
+        public DbSet<Habitacion> Habitacion { get; set; }
         //Vamos a hacer el insert de nuestros países
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

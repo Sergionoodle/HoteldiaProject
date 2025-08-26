@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hoteldia")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72b19b8dc078a4711dac1a2607b3367c4667d719")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abc26895f1f5a66c4e4f04a7b254a11c26fe1b4c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hoteldia")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hoteldia")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
