@@ -1,4 +1,4 @@
-# 🏨 HotelDia
+🏨 HotelDia
 
 **HotelDia** es una aplicación de gestión hotelera desarrollada con **Blazor Server** y **.NET 8**. Es un proyecto educativo que tiene como objetivo practicar y aplicar principios de desarrollo web full-stack utilizando tecnologías modernas del ecosistema .NET.
 
@@ -116,5 +116,3 @@ Proyecto creado por [Sergionoodle](https://github.com/Sergionoodle) como parte d
 Este proyecto está disponible con fines educativos bajo una licencia de uso libre. Puedes usarlo, modificarlo y compartirlo siempre que se dé el crédito correspondiente al autor.
 
 ---
-
-
