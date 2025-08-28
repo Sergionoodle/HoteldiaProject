@@ -1,0 +1,52 @@
+﻿@page "/habitaciones/{propiedadId:int}"
+@using Hoteldia.Modelos.DTO
+@using Hoteldia.Repositorio.IRespositorio
+@inject IHabitacionRepositorio HabitacionRepositorio
+@inject IPropiedadRepositorio PropiedadRepositorio
+
+<h3>Habitaciones de @propiedad?.Name</h3>
+
+@if (habitaciones is null)
+{
+    <p>Cargando…</p>
+}
+else if (!habitaciones.Any())
+{
+    <p>No hay habitaciones registradas.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Capacidad</th>
+                <th>Precio/noche</th>
+                <th>Activa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var h in habitaciones)
+            {
+                <tr>
+                    <td>@h.Nombre</td>
+                    <td>@h.Capacidad</td>
+                    <td>@h.PrecioPorNoche</td>
+                    <td>@(h.Activa ? "✅" : "❌")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter] public int propiedadId { get; set; }
+    private IEnumerable<HabitacionDTO> habitaciones;
+    private PropiedadDTO propiedad;
+
+    protected override async Task OnInitializedAsync()
+    {
+        habitaciones = await HabitacionRepositorio.GetAllHabitaciones(propiedadId);
+        propiedad = await PropiedadRepositorio.GetPropiedad(propiedadId);
+    }
+}

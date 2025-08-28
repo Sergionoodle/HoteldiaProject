@@ -331,3 +331,7 @@ C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\compres
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Hoteldia.sourcelink.json
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\RazorDeclaration\Components\Pages\Autorizacion\CompRoles.razor.g.cs
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Razor\Components\Pages\Autorizacion\CompRoles.razor.g.cs
+C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\RazorDeclaration\Components\Habitaciones\CompCrearHabitacion.razor.g.cs
+C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Razor\Components\Habitaciones\CompCrearHabitacion.razor.g.cs
+C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\RazorDeclaration\Components\Habitaciones\CompHabitacion.razor.g.cs
+C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Razor\Components\Habitaciones\CompHabitacion.razor.g.cs

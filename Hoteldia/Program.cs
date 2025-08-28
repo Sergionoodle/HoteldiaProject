@@ -47,6 +47,8 @@ builder.Services.AddScoped<IPropiedadRepositorio, PropiedadRepositorio>();
 builder.Services.AddScoped<ICountryRepositorio, CountryRepositorio>();
 builder.Services.AddScoped<IImagenPropiedadRepositori, ImagenPropiedadRepositorio>();
 builder.Services.AddScoped<ISubida, SubidaArchivo>();
+builder.Services.AddScoped<IHabitacionRepositorio, HabitacionRepositorio>();
+
 
 var app = builder.Build();
 
