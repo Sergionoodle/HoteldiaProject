@@ -85,13 +85,13 @@ using Hoteldia.Servicios
 #nullable disable
     ;
 #nullable restore
-#line (2,2)-(2,28) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
+#line (2,2)-(2,28) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompEditarHabitacion.razor"
 using Hoteldia.Modelos.DTO
 
 #nullable disable
     ;
 #nullable restore
-#line (3,2)-(3,42) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
+#line (3,2)-(3,42) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompEditarHabitacion.razor"
 using Hoteldia.Repositorio.IRespositorio
 
 #nullable disable
@@ -101,15 +101,15 @@ using Hoteldia.Repositorio.IRespositorio
     [global::Microsoft.AspNetCore.Components.RouteAttribute(
     // language=Route,Component
 #nullable restore
-#line (1,7)-(1,40) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
-"/habitaciones/{propiedadId:int}"
+#line (1,7)-(1,46) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompEditarHabitacion.razor"
+"/editar-habitacion/{habitacionId:int}"
 
 #line default
 #line hidden
 #nullable disable
     )]
     #nullable restore
-    public partial class CompHabitacion : global::Microsoft.AspNetCore.Components.ComponentBase
+    public partial class CompEditarHabitacion : global::Microsoft.AspNetCore.Components.ComponentBase
     #nullable disable
     {
         #pragma warning disable 1998
@@ -118,33 +118,25 @@ using Hoteldia.Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (47,8)-(74,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
+#line (44,8)-(63,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompEditarHabitacion.razor"
 
-    [Parameter] public int propiedadId { get; set; }
-    private IEnumerable<HabitacionDTO> habitaciones;
-    private PropiedadDTO propiedad;
+    [Parameter] public int habitacionId { get; set; }
+    private HabitacionDTO habitacion;
 
     protected override async Task OnInitializedAsync()
     {
-        habitaciones = await HabitacionRepositorio.GetAllHabitaciones(propiedadId);
-        propiedad = await PropiedadRepositorio.GetPropiedad(propiedadId);
+        habitacion = await HabitacionRepositorio.GetHabitacion(habitacionId);
     }
 
-
-    private void EditarHabitacion(int habitacionId)
+    private async Task GuardarCambios()
     {
-        NavigationManager.NavigateTo($"/editar-habitacion/{habitacionId}");
+        await HabitacionRepositorio.ActualizarHabitacion(habitacionId, habitacion);
+        NavigationManager.NavigateTo($"/habitaciones/{habitacion.PropiedadId}");
     }
 
-    private async Task BorrarHabitacion(int habitacionId)
+    private void Cancelar()
     {
-        var resultado = await HabitacionRepositorio.BorrarHabitacion(habitacionId);
-        if (resultado > 0)
-        {
-            // Refrescar la lista
-            habitaciones = await HabitacionRepositorio.GetAllHabitaciones(propiedadId);
-            StateHasChanged();
-        }
+        NavigationManager.NavigateTo($"/habitaciones/{habitacion.PropiedadId}");
     }
 
 #line default
@@ -153,7 +145,7 @@ using Hoteldia.Repositorio.IRespositorio
 
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (6,9)-(6,26) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
+#line (5,9)-(5,26) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompEditarHabitacion.razor"
 NavigationManager
 
 #line default
@@ -161,7 +153,7 @@ NavigationManager
 #nullable disable
          
 #nullable restore
-#line (6,27)-(6,44) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
+#line (5,27)-(5,44) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompEditarHabitacion.razor"
 NavigationManager
 
 #line default
@@ -171,25 +163,7 @@ NavigationManager
          = default!;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (5,9)-(5,30) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
-IPropiedadRepositorio
-
-#line default
-#line hidden
-#nullable disable
-         
-#nullable restore
-#line (5,31)-(5,51) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
-PropiedadRepositorio
-
-#line default
-#line hidden
-#nullable disable
-         { get; set; }
-         = default!;
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
-#nullable restore
-#line (4,9)-(4,31) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
+#line (4,9)-(4,31) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompEditarHabitacion.razor"
 IHabitacionRepositorio
 
 #line default
@@ -197,7 +171,7 @@ IHabitacionRepositorio
 #nullable disable
          
 #nullable restore
-#line (4,32)-(4,53) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompHabitacion.razor"
+#line (4,32)-(4,53) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompEditarHabitacion.razor"
 HabitacionRepositorio
 
 #line default

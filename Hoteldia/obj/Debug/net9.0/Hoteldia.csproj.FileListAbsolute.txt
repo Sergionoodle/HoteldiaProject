@@ -335,3 +335,5 @@ C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\RazorDe
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Razor\Components\Habitaciones\CompCrearHabitacion.razor.g.cs
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\RazorDeclaration\Components\Habitaciones\CompHabitacion.razor.g.cs
 C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Razor\Components\Habitaciones\CompHabitacion.razor.g.cs
+C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\RazorDeclaration\Components\Habitaciones\CompEditarHabitacion.razor.g.cs
+C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\obj\Debug\net9.0\Razor\Components\Habitaciones\CompEditarHabitacion.razor.g.cs

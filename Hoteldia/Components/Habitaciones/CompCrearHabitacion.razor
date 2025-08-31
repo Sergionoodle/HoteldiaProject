@@ -1,7 +1,5 @@
 ﻿@page "/crear-habitacion/{propiedadId:int}"
-@using Hoteldia.Modelos
 @using Hoteldia.Modelos.DTO
-@using Hoteldia.Repositorio
 @using Hoteldia.Repositorio.IRespositorio
 @inject IHabitacionRepositorio HabitacionRepositorio
 @inject NavigationManager NavigationManager
@@ -23,8 +21,8 @@
     </div>
 
     <div class="mb-3">
-        <label>Capacidad</label>
-        <InputNumber @bind-Value="habitacion.Capacidad" class="form-control" />
+        <label>Cantidad disponible</label>
+        <InputNumber @bind-Value="habitacion.CantidadDisponible" class="form-control" />
     </div>
 
     <div class="mb-3">
@@ -32,14 +30,10 @@
         <InputTextArea @bind-Value="habitacion.Descripcion" class="form-control" />
     </div>
 
-    <div class="form-check mb-3">
-        <InputCheckbox @bind-Value="habitacion.Activa" class="form-check-input" />
-        <label class="form-check-label">Activa</label>
-    </div>
-
     <button type="submit" class="btn btn-primary">Guardar</button>
     <button type="button" class="btn btn-secondary" @onclick="Cancelar">Cancelar</button>
 </EditForm>
+
 @code {
     [Parameter] public int propiedadId { get; set; }
     private HabitacionDTO habitacion = new();
@@ -52,12 +46,11 @@
     private async Task CrearHabitacion()
     {
         await HabitacionRepositorio.CrearHabitacion(habitacion);
-        NavigationManager.NavigateTo("/propiedades");
+        NavigationManager.NavigateTo($"/habitaciones/{propiedadId}");
     }
 
     private void Cancelar()
     {
-        NavigationManager.NavigateTo("/propiedades");
+        NavigationManager.NavigateTo($"/habitaciones/{propiedadId}");
     }
-
 }

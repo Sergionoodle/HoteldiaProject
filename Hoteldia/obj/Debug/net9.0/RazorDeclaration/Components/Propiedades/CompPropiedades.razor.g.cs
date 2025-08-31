@@ -105,7 +105,7 @@ using Repositorio.IRespositorio
     #line default
     #line hidden
 #nullable restore
-#line (9,12)-(9,66) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+#line (10,12)-(10,66) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
 [Authorize(Roles = "Administrador, Editor, Operador")]
 
 #line default
@@ -132,11 +132,13 @@ using Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (121,8)-(159,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+#line (126,8)-(184,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
 
     private IEnumerable<PropiedadDTO> propiedadDTO { get; set; } = new List<PropiedadDTO>();
     private bool estado { get; set; } = false;
     private int? BorrarId { get; set; }
+
+    private Dictionary<int, bool> HabitacionesPorPropiedad = new();
 
     private string filtroNombre = string.Empty;
 
@@ -145,6 +147,12 @@ using Repositorio.IRespositorio
 
         //Recuperamos todas las categorias
         propiedadDTO = await PropiedadRepositorio.GetAllPropiedads();
+
+        foreach (var p in propiedadDTO)
+        {
+            var habitaciones = await HabitacionRepositorio.GetAllHabitaciones(p.Id);
+            HabitacionesPorPropiedad[p.Id] = habitaciones != null && habitaciones.Any();
+        }
     }
 
 
@@ -172,10 +180,40 @@ using Repositorio.IRespositorio
         BorrarId = null; // Oculta el modal
     }
 
+    public async Task<bool> CheckHabitacion(int idPropiedad)
+    {
+        var numeroHabitaciones = await HabitacionRepositorio.GetAllHabitaciones(idPropiedad);
+        if(numeroHabitaciones.Count() < 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+
+
 #line default
 #line hidden
 #nullable disable
 
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
+#nullable restore
+#line (8,9)-(8,31) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+IHabitacionRepositorio
+
+#line default
+#line hidden
+#nullable disable
+         
+#nullable restore
+#line (8,32)-(8,53) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"
+HabitacionRepositorio
+
+#line default
+#line hidden
+#nullable disable
+         { get; set; }
+         = default!;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
 #line (7,9)-(7,16) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Propiedades\CompPropiedades.razor"

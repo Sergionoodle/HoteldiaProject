@@ -85,25 +85,13 @@ using Hoteldia.Servicios
 #nullable disable
     ;
 #nullable restore
-#line (2,2)-(2,24) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
-using Hoteldia.Modelos
-
-#nullable disable
-    ;
-#nullable restore
-#line (3,2)-(3,28) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
+#line (2,2)-(2,28) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
 using Hoteldia.Modelos.DTO
 
 #nullable disable
     ;
 #nullable restore
-#line (4,2)-(4,28) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
-using Hoteldia.Repositorio
-
-#nullable disable
-    ;
-#nullable restore
-#line (5,2)-(5,42) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
+#line (3,2)-(3,42) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
 using Hoteldia.Repositorio.IRespositorio
 
 #nullable disable
@@ -130,7 +118,7 @@ using Hoteldia.Repositorio.IRespositorio
         }
         #pragma warning restore 1998
 #nullable restore
-#line (43,8)-(63,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
+#line (37,8)-(56,1) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
 
     [Parameter] public int propiedadId { get; set; }
     private HabitacionDTO habitacion = new();
@@ -143,14 +131,13 @@ using Hoteldia.Repositorio.IRespositorio
     private async Task CrearHabitacion()
     {
         await HabitacionRepositorio.CrearHabitacion(habitacion);
-        NavigationManager.NavigateTo("/propiedades");
+        NavigationManager.NavigateTo($"/habitaciones/{propiedadId}");
     }
 
     private void Cancelar()
     {
-        NavigationManager.NavigateTo("/propiedades");
+        NavigationManager.NavigateTo($"/habitaciones/{propiedadId}");
     }
-
 
 #line default
 #line hidden
@@ -158,7 +145,7 @@ using Hoteldia.Repositorio.IRespositorio
 
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (7,9)-(7,26) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
+#line (5,9)-(5,26) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
 NavigationManager
 
 #line default
@@ -166,7 +153,7 @@ NavigationManager
 #nullable disable
          
 #nullable restore
-#line (7,27)-(7,44) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
+#line (5,27)-(5,44) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
 NavigationManager
 
 #line default
@@ -176,7 +163,7 @@ NavigationManager
          = default!;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private 
 #nullable restore
-#line (6,9)-(6,31) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
+#line (4,9)-(4,31) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
 IHabitacionRepositorio
 
 #line default
@@ -184,7 +171,7 @@ IHabitacionRepositorio
 #nullable disable
          
 #nullable restore
-#line (6,32)-(6,53) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
+#line (4,32)-(4,53) "C:\Users\srrex\Desktop\Proyecto\HoteldiaServer\Hoteldia\Components\Habitaciones\CompCrearHabitacion.razor"
 HabitacionRepositorio
 
 #line default

@@ -5,6 +5,7 @@
 @inject IPropiedadRepositorio PropiedadRepositorio
 @inject NavigationManager navigationManager
 @inject ISubida subidaArchivo
+@inject IHabitacionRepositorio HabitacionRepositorio
 
 @attribute [Authorize(Roles = "Administrador, Editor, Operador")]
 
@@ -76,12 +77,16 @@
                                         <NavLink href="@($"crear-habitacion/{propiedad.Id}")" class="btn btn-primary mb-1">
                                             <i class="bi bi-door-open me-1"></i> Añadir Habitación
                                         </NavLink>
-                                        <NavLink href="@($"habitaciones/{propiedad.Id}")" class="btn btn-outline-secondary btn-sm mb-1">
-                                            Ver habitaciones
-                                        </NavLink>
+                                       
                                         <button class="btn btn-danger" @onclick="() => ManejadorOnBorrar(propiedad.Id)"><i class="bi bi-trash-fill">Borrar</i></button>
                                     </Authorized>
                                 </AuthorizeView>
+                                @if (HabitacionesPorPropiedad.ContainsKey(propiedad.Id) && HabitacionesPorPropiedad[propiedad.Id])
+                                {
+                                    <NavLink href="@($"habitaciones/{propiedad.Id}")" class="btn btn-outline-secondary btn-sm mt-1">
+                                        Ver habitaciones
+                                    </NavLink>
+                                }
                             </td>
                         </tr>
                     }
@@ -123,6 +128,8 @@
     private bool estado { get; set; } = false;
     private int? BorrarId { get; set; }
 
+    private Dictionary<int, bool> HabitacionesPorPropiedad = new();
+
     private string filtroNombre = string.Empty;
 
     protected override async Task OnInitializedAsync()
@@ -130,6 +137,12 @@
 
         //Recuperamos todas las categorias
         propiedadDTO = await PropiedadRepositorio.GetAllPropiedads();
+
+        foreach (var p in propiedadDTO)
+        {
+            var habitaciones = await HabitacionRepositorio.GetAllHabitaciones(p.Id);
+            HabitacionesPorPropiedad[p.Id] = habitaciones != null && habitaciones.Any();
+        }
     }
 
 
@@ -156,4 +169,16 @@
 
         BorrarId = null; // Oculta el modal
     }
+
+    public async Task<bool> CheckHabitacion(int idPropiedad)
+    {
+        var numeroHabitaciones = await HabitacionRepositorio.GetAllHabitaciones(idPropiedad);
+        if(numeroHabitaciones.Count() < 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+
 }

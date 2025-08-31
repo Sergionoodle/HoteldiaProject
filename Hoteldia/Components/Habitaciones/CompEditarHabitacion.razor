@@ -1,0 +1,63 @@
+﻿@page "/editar-habitacion/{habitacionId:int}"
+@using Hoteldia.Modelos.DTO
+@using Hoteldia.Repositorio.IRespositorio
+@inject IHabitacionRepositorio HabitacionRepositorio
+@inject NavigationManager NavigationManager
+
+<h3>Editar Habitación</h3>
+
+@if (habitacion is null)
+{
+    <p>Cargando datos...</p>
+}
+else
+{
+    <EditForm Model="habitacion" OnValidSubmit="GuardarCambios">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label>Nombre</label>
+            <InputText @bind-Value="habitacion.Nombre" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Precio por noche</label>
+            <InputNumber @bind-Value="habitacion.PrecioPorNoche" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Cantidad disponible</label>
+            <InputNumber @bind-Value="habitacion.CantidadDisponible" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Descripción</label>
+            <InputTextArea @bind-Value="habitacion.Descripcion" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        <button type="button" class="btn btn-secondary" @onclick="Cancelar">Cancelar</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter] public int habitacionId { get; set; }
+    private HabitacionDTO habitacion;
+
+    protected override async Task OnInitializedAsync()
+    {
+        habitacion = await HabitacionRepositorio.GetHabitacion(habitacionId);
+    }
+
+    private async Task GuardarCambios()
+    {
+        await HabitacionRepositorio.ActualizarHabitacion(habitacionId, habitacion);
+        NavigationManager.NavigateTo($"/habitaciones/{habitacion.PropiedadId}");
+    }
+
+    private void Cancelar()
+    {
+        NavigationManager.NavigateTo($"/habitaciones/{habitacion.PropiedadId}");
+    }
+}

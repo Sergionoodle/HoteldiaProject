@@ -3,6 +3,8 @@
 @using Hoteldia.Repositorio.IRespositorio
 @inject IHabitacionRepositorio HabitacionRepositorio
 @inject IPropiedadRepositorio PropiedadRepositorio
+@inject NavigationManager NavigationManager
+
 
 <h3>Habitaciones de @propiedad?.Name</h3>
 
@@ -20,9 +22,10 @@ else
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Capacidad</th>
+                <th>Cantidad disponible</th>
                 <th>Precio/noche</th>
-                <th>Activa</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -30,9 +33,11 @@ else
             {
                 <tr>
                     <td>@h.Nombre</td>
-                    <td>@h.Capacidad</td>
+                    <td>@h.CantidadDisponible</td>
                     <td>@h.PrecioPorNoche</td>
-                    <td>@(h.Activa ? "✅" : "❌")</td>
+                    <td>@h.Descripcion</td>
+                    <button class="btn btn-warning btn-sm" @onclick="() => EditarHabitacion(h.Id)">Editar</button>
+                    <button class="btn btn-danger btn-sm" @onclick="() => BorrarHabitacion(h.Id)">Borrar</button>
                 </tr>
             }
         </tbody>
@@ -48,5 +53,22 @@ else
     {
         habitaciones = await HabitacionRepositorio.GetAllHabitaciones(propiedadId);
         propiedad = await PropiedadRepositorio.GetPropiedad(propiedadId);
+    }
+
+
+    private void EditarHabitacion(int habitacionId)
+    {
+        NavigationManager.NavigateTo($"/editar-habitacion/{habitacionId}");
+    }
+
+    private async Task BorrarHabitacion(int habitacionId)
+    {
+        var resultado = await HabitacionRepositorio.BorrarHabitacion(habitacionId);
+        if (resultado > 0)
+        {
+            // Refrescar la lista
+            habitaciones = await HabitacionRepositorio.GetAllHabitaciones(propiedadId);
+            StateHasChanged();
+        }
     }
 }
